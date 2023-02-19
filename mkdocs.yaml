@@ -1,0 +1,21 @@
+site_name: golang-jwt docs
+site_url: https://golang-jwt.github.io/jwt/
+
+repo_name: golang-jwt/jwt
+repo_url: https://github.com/golang-jwt/jwt
+edit_uri: ""
+
+theme:
+  name: material
+  palette:
+    primary: white
+    accent: indigo
+  logo: assets/jwt.png
+  favicon: assets/jwt.png
+  features:
+    - navigation.instant
+    - toc.integrate
+    - navigation.sections
+
+nav:
+  - index.md

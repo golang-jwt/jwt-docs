@@ -1,0 +1,43 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install python3
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.x
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - name: Install Material for MkDocs
+        run: pip install mkdocs-material
+      - name: Build
+        run: mkdocs build --clean --config-file mkdocs.yaml -d site -v
+      - name: Prepare message
+        run: |
+          MKDOCS_VERSION=$(pip list --no-index --format=json | jq -r '.[] | select(.name=="mkdocs").version')
+          MATERIAL_VERSION=$(pip list --no-index --format=json | jq -r '.[] | select(.name=="mkdocs-material").version')
+          SHA_SHORT=$(git rev-parse --short HEAD)
+          MESSAGE="Deployed ${SHA_SHORT} with MkDocs version ${MKDOCS_VERSION} (${MATERIAL_VERSION})"
+          echo "MESSAGE=${MESSAGE}" >> $GITHUB_ENV
+      - name: Deploy
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: site/
+          destination-github-username: "golang-jwt"
+          destination-repository-name: "jwt"
+          commit-message: ${{ env.MESSAGE }}
+          target-branch: gh-pages
