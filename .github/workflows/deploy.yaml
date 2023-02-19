@@ -31,6 +31,10 @@ jobs:
           SHA_SHORT=$(git rev-parse --short HEAD)
           MESSAGE="Deployed ${SHA_SHORT} with MkDocs version ${MKDOCS_VERSION} (${MATERIAL_VERSION})"
           echo "MESSAGE=${MESSAGE}" >> $GITHUB_ENV
+      - name: Example step where the github-actions bot makes a git commit
+        run: |
+          git config --global user.name github-actions[bot]
+          git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Deploy
         uses: cpina/github-action-push-to-another-repository@main
         env:
@@ -39,5 +43,7 @@ jobs:
           source-directory: site/
           destination-github-username: "golang-jwt"
           destination-repository-name: "jwt"
+          user-name: "github-actions[bot]"
+          user-email: "41898282+github-actions[bot]@users.noreply.github.com"
           commit-message: ${{ env.MESSAGE }}
           target-branch: gh-pages
