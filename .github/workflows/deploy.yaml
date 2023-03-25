@@ -21,7 +21,7 @@ jobs:
           key: ${{ github.ref }}
           path: .cache
       - name: Install Material for MkDocs
-        run: pip install mkdocs-material
+        run: pip install mkdocs-material pillow cairosvg
       - name: Build
         run: mkdocs build --clean --config-file mkdocs.yaml -d site -v
       - name: Prepare message
