@@ -5,17 +5,30 @@ repo_name: golang-jwt/jwt
 repo_url: https://github.com/golang-jwt/jwt
 edit_uri: ""
 
+plugins:
+  - social
+
 theme:
   name: material
   palette:
-    primary: white
-    accent: indigo
+    primary: light blue
+    accent: purple
   logo: assets/jwt.png
   favicon: assets/jwt.png
   features:
     - navigation.instant
+    - navigation.tabs
     - toc.integrate
-    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
 
-nav:
-  - index.md
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - footnotes
