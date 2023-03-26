@@ -59,6 +59,39 @@ Note, that the chosen signing method and the type of key must match. Please refe
 
 ## With Additional Claims
 
+While the step above using [`jwt.New`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#New) creates a valid token, it contains an empty set of *claims*. Claims are certain pieces of information that are encoded into the token. Since they are encoded and signed by the issuer of the token, one can assume that this information is valid (in the scope of the issuer). Claims can be used to provide the basis for user authentication or authorization, e.g., by encoding a user name or ID or roles into the token. This is also commonly in combination with OAuth 2.0. Furthermore, claims can also contain certain metadata about the token itself, e.g., the time until which the token is regarded as valid and not expired.
+
+[RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519) provides a list of so called *registered claim names* [^claims], which each JWT parser needs to understand. Using the [`jwt.NewWithClaims`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#NewWithClaims), a token with different claims can be created.
+
+```go
+var (
+  key *ecdsa.PrivateKey
+  t   *jwt.Token
+  s   string
+)
+
+key = /* Load key from somewhere, for example a file */
+t = jwt.NewWithClaims(jwt.SigningMethodES256, // (1)!
+  jwt.MapClaims{ // (2)!
+    "iss": "my-auth-server", // (3)!
+    "sub": "john", // (4)!
+    "foo": 2, // (5)!
+  })
+s = t.SignedString(key) // (6)!
+```
+
+1. This initializes a new [`jwt.Token`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#Token) struct based on the supplied signing method. In this case a **asymmetric** method is chosen, which is the first parameter.
+2. The second parameter contains the desired claims in form of the [`jwt.Claims`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#Claims) interface. In this case [`jwt.MapClaims`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#MapClaims) are used, which is a wrapper type around a Go map containing `string` keys.
+3. The `"sub"`[^sub] claim is a registered claim name that contains the subject this token identifies, e.g. a user name. More technical, this claim identifies the principal that is the *subject* of the token.
+4. The `"iss"`[^iss] claim is a registered claim name that contains the issuer of the token. More technical, this claim identifies the principal that *issued* the token.
+5. The `"foo"` claim is a custom claim containing a numeric value. Any string value can be chosen as a claim name, as long as it does not interfere with a registered claim name.
+6. This step computes a cryptographic signature based on the supplied private
+   key.
+
+[^claims]: [Section 4.1 of RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1)
+[^iss]: [Section 4.1.1 of RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1)
+[^sub]: [Section 4.1.2 of RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2)
+
 ## With Options
 
 While we already prepared a

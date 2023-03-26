@@ -19,9 +19,9 @@
 
 
 [^1]: [https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries)
-[^iss]: [https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1)
-[^sub]: [https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2)
-[^aud]: [https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3)
-[^exp]: [https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4)
-[^iat]: [https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.6](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.6)
+[^iss]: [Section 4.1.1 of RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1)
+[^sub]: [Section 4.1.2 of RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2)
+[^aud]: [Section 4.1.3 of RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3)
+[^exp]: [Section 4.1.4 of RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4)
+[^iat]: [Section 4.1.6 of RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.6)
 
