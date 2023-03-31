@@ -36,6 +36,8 @@ Each signing method expects a different object type for its signing keys. The fo
 [^rsapss]: [Section 3.2 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.5)
 [^eddsa]: [Section 3.1 of RFC 8037](https://datatracker.ietf.org/doc/html/rfc8037#section-3.1)
 
+## Frequently Asked Questions
+
 **Why is the HMAC signing method not accepting `string` as a key type?**
 
 We often get asked why the HMAC signing method only supports `[]byte` and not `string`. This is intentionally and there are different reasons for doing so. First, we aim to use the key type that the underlying cryptographic operation in the Go library uses (this also applies to the other signing methods). In case of HMAC, this is [`hmac.New`](https://pkg.go.dev/crypto/hmac#New) and it uses `[]byte` as the type to represent a key.
