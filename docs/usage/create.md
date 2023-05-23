@@ -82,8 +82,8 @@ s = t.SignedString(key) // (6)!
 
 1. This initializes a new [`jwt.Token`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#Token) struct based on the supplied signing method. In this case a **asymmetric** method is chosen, which is the first parameter.
 2. The second parameter contains the desired claims in form of the [`jwt.Claims`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#Claims) interface. In this case [`jwt.MapClaims`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#MapClaims) are used, which is a wrapper type around a Go map containing `string` keys.
-3. The `"sub"`[^sub] claim is a registered claim name that contains the subject this token identifies, e.g. a user name. More technical, this claim identifies the principal that is the *subject* of the token.
-4. The `"iss"`[^iss] claim is a registered claim name that contains the issuer of the token. More technical, this claim identifies the principal that *issued* the token.
+3. The `"iss"`[^iss] claim is a registered claim name that contains the issuer of the token. More technical, this claim identifies the principal that *issued* the token.
+4. The `"sub"`[^sub] claim is a registered claim name that contains the subject this token identifies, e.g. a user name. More technical, this claim identifies the principal that is the *subject* of the token.
 5. The `"foo"` claim is a custom claim containing a numeric value. Any string value can be chosen as a claim name, as long as it does not interfere with a registered claim name.
 6. This step computes a cryptographic signature based on the supplied private
    key.
