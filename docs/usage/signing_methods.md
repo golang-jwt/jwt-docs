@@ -27,7 +27,7 @@ Each signing method expects a different object type for its signing keys. The fo
 | [RSA signing method](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#SigningMethodRSA)[^rsa]           | `RS256`,`RS384`,`RS512`  | [`*rsa.PrivateKey`](https://pkg.go.dev/crypto/rsa#PrivateKey)        | [`*rsa.PublicKey`](https://pkg.go.dev/crypto/rsa#PublicKey)        |
 | [ECDSA signing method](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#SigningMethodECDSA)[^ecdsa]     | `ES256`,`ES384`,`ES512`  | [`*ecdsa.PrivateKey`](https://pkg.go.dev/crypto/ecdsa#PrivateKey)    | [`*ecdsa.PublicKey`](https://pkg.go.dev/crypto/ecdsa#PublicKey)    |
 | [RSA-PSS signing method](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#SigningMethodRSAPSS)[^rsapss] | `PS256`,`PS384`,`PS512`  | [`*rsa.PrivateKey`](https://pkg.go.dev/crypto/rsa#PrivateKey)        | [`*rsa.PublicKey`](https://pkg.go.dev/crypto/rsa#PublicKey)        |
-| [EdDSA signing method](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#SigningMethodEd25519)[^eddsa]   | `EdDSA`                | [`ed25519.PrivateKey`](https://pkg.go.dev/crypto/ed25519#PrivateKey) | [`ed25519.PublicKey`](https://pkg.go.dev/crypto/ed25519#PublicKey) |
+| [EdDSA signing method](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#SigningMethodEd25519)[^eddsa]   | `EdDSA`                  | [`ed25519.PrivateKey`](https://pkg.go.dev/crypto/ed25519#PrivateKey) | [`ed25519.PublicKey`](https://pkg.go.dev/crypto/ed25519#PublicKey) |
 
 [^jwe]: [RFC 7516](https://datatracker.ietf.org/doc/html/rfc7516)
 [^hmac]: [Section 3.2 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.2)
