@@ -31,9 +31,9 @@ Each signing method expects a different object type for its signing keys. The fo
 
 [^jwe]: [RFC 7516](https://datatracker.ietf.org/doc/html/rfc7516)
 [^hmac]: [Section 3.2 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.2)
-[^rsa]: [Section 3.2 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.3)
-[^ecdsa]: [Section 3.2 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.4)
-[^rsapss]: [Section 3.2 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.5)
+[^rsa]: [Section 3.3 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.3)
+[^ecdsa]: [Section 3.4 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.4)
+[^rsapss]: [Section 3.5 of RFC 7518](https://datatracker.ietf.org/doc/html/rfc7518#section-3.5)
 [^eddsa]: [Section 3.1 of RFC 8037](https://datatracker.ietf.org/doc/html/rfc8037#section-3.1)
 
 ## Frequently Asked Questions
