@@ -98,24 +98,24 @@ In the above examples Custom Claims have been used with [`jwt.MapClaims`](https:
 
 ```go
 var (
-	key *ecdsa.PrivateKey
-	t   *jwt.Token
-	s   string
-  claims CustomClaims
+ key *ecdsa.PrivateKey
+ t   *jwt.Token
+ s   string
+ claims CustomClaims
 )
 
 type CustomClaims struct {
-	Foo  string `json:"foo"`
-	jwt.RegisteredClaims
+ Foo  string `json:"foo"`
+ jwt.RegisteredClaims
 }
 
 claims := CustomClaims{ // (1)!
-		"bar", // (2) !
-		jwt.RegisteredClaims{ // (3) !
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)), // (4) !
-			Issuer:    "john", // (5) !
-			Subject:   "subject", // (6) !
-		},
+ "bar", // (2) !
+  jwt.RegisteredClaims{ // (3) !
+	 ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)), // (4) !
+	 Issuer:    "john", // (5) !
+	 Subject:   "subject", // (6) !
+  },
 }
 
 key = /* Load key from somewhere, for example a file */
@@ -127,8 +127,8 @@ s = t.SignedString(key) // (8)!
 2. The "bar" string here is the actual value for the custom claim Foo. This is completely user-defined and not governed by any JWT standardization, allowing for flexible claim modeling across tokens.
 3. jwt.RegisteredClaims{...} sets standard claims that are recognized across JWT-compliant systems. This may include expiry, issuer, and subject identifiers.
 4. The ExpiresAt field uses jwt.NewNumericDate(...) to convert a Go time.Time into the numeric timestamp format expected in JWTs. Here, the token is valid for 24 hours.
-5. The `"john"` [^iss] value assigned to the Issuer claim helps the recipient validate who issued the token — a critical aspect when tokens are exchanged across systems.
-6. The `"subject"`[^sub] value assigned to Subject identifies the principal for whom the token was issued, often corresponding to the authenticated user.
+5. The `"john"` value assigned to the Issuer[^iss] claim helps the recipient validate who issued the token — a critical aspect when tokens are exchanged across systems.
+6. The `"subject"` value assigned to Subject[^sub] identifies the principal for whom the token was issued, often corresponding to the authenticated user.
 7. This initializes a new [`jwt.Token`](https://pkg.go.dev/github.com/golang-jwt/jwt/v5#Token) struct based on the supplied signing method. Here as well an **asymmetric** method is chosen, as the first parameter.
 8. This step computes a cryptographic signature based on the supplied private key.
 
