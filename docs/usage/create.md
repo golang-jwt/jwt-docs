@@ -110,12 +110,12 @@ type CustomClaims struct {
 }
 
 claims := CustomClaims{ // (1)!
- "bar", // (2) !
-  jwt.RegisteredClaims{ // (3) !
+ Foo: "bar", // (2) !
+ RegisteredClaims: jwt.RegisteredClaims{ // (3) !
 	 ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)), // (4) !
 	 Issuer:    "john", // (5) !
 	 Subject:   "subject", // (6) !
-  },
+ },
 }
 
 key = /* Load key from somewhere, for example a file */
@@ -123,7 +123,7 @@ key = /* Load key from somewhere, for example a file */
 t = jwt.NewWithClaims(jwt.SigningMethodES256, claims) // (7)!
 s = t.SignedString(key) // (8)!
 ```
-1. This initializes claims variable based of the type CustomClaims struct as declared. This will have all defintions and values for the custom claims along with the registered claim values embedded via[`jwt.RegisteredClaims`] (https://datatracker.ietf.org/doc/html/rfc7519#section-4.1).
+1. This initializes claims variable based of the type CustomClaims struct as declared. This will have all definitions and values for the custom claims along with the registered claim values embedded via[`jwt.RegisteredClaims`] (https://datatracker.ietf.org/doc/html/rfc7519#section-4.1).
 2. The "bar" string here is the actual value for the custom claim Foo. This is completely user-defined and not governed by any JWT standardization, allowing for flexible claim modeling across tokens.
 3. jwt.RegisteredClaims{...} sets standard claims that are recognized across JWT-compliant systems. This may include expiry, issuer, and subject identifiers.
 4. The ExpiresAt field uses jwt.NewNumericDate(...) to convert a Go time.Time into the numeric timestamp format expected in JWTs. Here, the token is valid for 24 hours.
